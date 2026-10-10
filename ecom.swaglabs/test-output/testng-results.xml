@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[Before Suite]]>
+    </line>
+    <line>
+      <![CDATA[Before Test]]>
+    </line>
+    <line>
+      <![CDATA[Before Method]]>
+    </line>
+    <line>
+      <![CDATA[After Method]]>
+    </line>
+    <line>
+      <![CDATA[Before Method]]>
+    </line>
+    <line>
+      <![CDATA[After Method]]>
+    </line>
+    <line>
+      <![CDATA[Before Method]]>
+    </line>
+    <line>
+      <![CDATA[After Method]]>
+    </line>
+    <line>
+      <![CDATA[After Test]]>
+    </line>
+    <line>
+      <![CDATA[After Suite]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2026-10-10T13:31:36 IST" name="Suite" finished-at="2026-10-10T13:32:12 IST" duration-ms="35711">
+    <groups>
+      <group name="Positive">
+        <method signature="Checkout.verifyCheckoutCanProceed()[pri:0, instance:checkoutscript.Checkout@6989da5e]" name="verifyCheckoutCanProceed" class="checkoutscript.Checkout"/>
+        <method signature="Inventory.verifyInventoryPageLoads()[pri:0, instance:inventoryscript.Inventory@385c9627]" name="verifyInventoryPageLoads" class="inventoryscript.Inventory"/>
+      </group> <!-- Positive -->
+      <group name="Smoke">
+        <method signature="Cart.verifyCartPageLoads()[pri:0, instance:cartscript.Cart@6a78afa0]" name="verifyCartPageLoads" class="cartscript.Cart"/>
+        <method signature="Checkout.verifyCheckoutCanProceed()[pri:0, instance:checkoutscript.Checkout@6989da5e]" name="verifyCheckoutCanProceed" class="checkoutscript.Checkout"/>
+        <method signature="Inventory.verifyInventoryPageLoads()[pri:0, instance:inventoryscript.Inventory@385c9627]" name="verifyInventoryPageLoads" class="inventoryscript.Inventory"/>
+      </group> <!-- Smoke -->
+    </groups>
+    <test started-at="2026-10-10T13:31:36 IST" name="Smoke Tests" finished-at="2026-10-10T13:32:12 IST" duration-ms="35711">
+      <class name="cartscript.Cart">
+        <test-method is-config="true" signature="dbConnection()[pri:0, instance:cartscript.Cart@6a78afa0]" started-at="2026-10-10T13:31:36 IST" name="dbConnection" finished-at="2026-10-10T13:31:36 IST" duration-ms="29" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Before Suite]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- dbConnection -->
+        <test-method is-config="true" signature="bt()[pri:0, instance:cartscript.Cart@6a78afa0]" started-at="2026-10-10T13:31:36 IST" name="bt" finished-at="2026-10-10T13:31:36 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[Before Test]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- bt -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.String)[pri:0, instance:cartscript.Cart@6a78afa0]" started-at="2026-10-10T13:31:36 IST" name="beforeMethod" finished-at="2026-10-10T13:31:48 IST" duration-ms="12211" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Before Method]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="verifyCartPageLoads()[pri:0, instance:cartscript.Cart@6a78afa0]" started-at="2026-10-10T13:31:48 IST" name="verifyCartPageLoads" finished-at="2026-10-10T13:31:48 IST" duration-ms="169" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyCartPageLoads -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:cartscript.Cart@6a78afa0]" started-at="2026-10-10T13:31:48 IST" name="afterMethod" finished-at="2026-10-10T13:31:49 IST" duration-ms="229" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[After Method]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method is-config="true" signature="at()[pri:0, instance:cartscript.Cart@6a78afa0]" started-at="2026-10-10T13:32:12 IST" name="at" finished-at="2026-10-10T13:32:12 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[After Test]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- at -->
+        <test-method is-config="true" signature="closeConnection()[pri:0, instance:cartscript.Cart@6a78afa0]" started-at="2026-10-10T13:32:12 IST" name="closeConnection" finished-at="2026-10-10T13:32:12 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[After Suite]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- closeConnection -->
+      </class> <!-- cartscript.Cart -->
+      <class name="checkoutscript.Checkout">
+        <test-method is-config="true" signature="beforeMethod(java.lang.String)[pri:0, instance:checkoutscript.Checkout@6989da5e]" started-at="2026-10-10T13:31:49 IST" name="beforeMethod" finished-at="2026-10-10T13:32:00 IST" duration-ms="10987" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Before Method]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="verifyCheckoutCanProceed()[pri:0, instance:checkoutscript.Checkout@6989da5e]" started-at="2026-10-10T13:32:00 IST" name="verifyCheckoutCanProceed" finished-at="2026-10-10T13:32:03 IST" duration-ms="3106" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyCheckoutCanProceed -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:checkoutscript.Checkout@6989da5e]" started-at="2026-10-10T13:32:03 IST" name="afterMethod" finished-at="2026-10-10T13:32:03 IST" duration-ms="237" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[After Method]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- checkoutscript.Checkout -->
+      <class name="inventoryscript.Inventory">
+        <test-method is-config="true" signature="beforeMethod(java.lang.String)[pri:0, instance:inventoryscript.Inventory@385c9627]" started-at="2026-10-10T13:32:03 IST" name="beforeMethod" finished-at="2026-10-10T13:32:11 IST" duration-ms="8446" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Before Method]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="verifyInventoryPageLoads()[pri:0, instance:inventoryscript.Inventory@385c9627]" started-at="2026-10-10T13:32:11 IST" name="verifyInventoryPageLoads" finished-at="2026-10-10T13:32:11 IST" duration-ms="27" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyInventoryPageLoads -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:inventoryscript.Inventory@385c9627]" started-at="2026-10-10T13:32:11 IST" name="afterMethod" finished-at="2026-10-10T13:32:12 IST" duration-ms="207" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[After Method]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- inventoryscript.Inventory -->
+    </test> <!-- Smoke Tests -->
+  </suite> <!-- Suite -->
+</testng-results>
