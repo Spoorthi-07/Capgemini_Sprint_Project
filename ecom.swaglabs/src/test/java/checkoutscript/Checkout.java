@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import genericutility.BaseClass;
 import genericutility.ExcelUtility;
-import junit.framework.Assert;
+import org.testng.Assert;
 import objrepo.CartPage;
 import objrepo.CheckoutOverviewPage;
 import objrepo.CheckoutPage;
@@ -290,22 +290,16 @@ public class Checkout extends BaseClass {
 	            lastName,
 	            zipCode
 	    );
+		checkoutPage.clickContinue();
+		
+		Assert.assertTrue(
+		    checkoutPage.getErrorMessage()
+		        .contains("First Name is required"),
+		    "Expected validation error for missing first name"
+		);
+		
+		wu.takeScreenshot(driver, "MissingFirstName");
 
-	    checkoutPage.clickContinue();
-
-	    Assert.assertTrue(
-	            checkoutPage.getErrorMessage()
-	                    .contains("First Name is required")
-	    );
-	    
-	    checkoutPage.clickContinue();
-
-	    wu.takeScreenshot(driver, "MissingFirstName");
-
-	    Assert.assertTrue(
-	            checkoutPage.getErrorMessage()
-	                    .contains("First Name is required")
-	    );
 	}
     
 }

@@ -56,15 +56,30 @@ public class CartPage {
 	    ).stream().anyMatch(WebElement::isDisplayed);
 	}
 	
+
 	public boolean isProductPresent(String productName) {
-	    return !driver.findElements(
-	        By.xpath(
-	            "//div[contains(@class,'cart_item')]"
-	            + "//div[contains(@class,'inventory_item_name')"
-	            + " and normalize-space(.)='" + productName + "']"
-	        )
-	    ).isEmpty();
+	
+	    WebDriverWait wait =
+	            new WebDriverWait(driver, Duration.ofSeconds(10));
+	
+	    By productLocator = By.xpath(
+	        "//div[contains(@class,'cart_item')]" +
+	        "//div[@class='inventory_item_name' and " +
+	        "normalize-space(.)='" + productName + "']"
+	    );
+	
+	    try {
+	        return wait.until(
+	            ExpectedConditions.visibilityOfElementLocated(
+	                productLocator
+	            )
+	        ).isDisplayed();
+	
+	    } catch (org.openqa.selenium.TimeoutException e) {
+	        return false;
+	    }
 	}
+
 
 
     public void removeProduct(String productName) {
@@ -75,4 +90,12 @@ public class CartPage {
 
         driver.findElement(By.xpath(xpath)).click();
     }
+    
+
+	public int getCartProductCount() {
+	    return driver.findElements(
+	        By.className("cart_item")
+	    ).size();
+	}
+
 }

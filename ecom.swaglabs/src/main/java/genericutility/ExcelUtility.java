@@ -1,28 +1,88 @@
+//package genericutility;
+//
+//import java.io.FileInputStream;
+//import java.io.IOException;
+//
+//import org.apache.poi.ss.usermodel.Workbook;
+//import org.apache.poi.ss.usermodel.WorkbookFactory;
+//
+//public class ExcelUtility {
+//	public String getDataFromExcel(String fileName, String sheetName, int row, int column) throws IOException {
+//
+//	    FileInputStream fis = new FileInputStream("./src/test/resources/" + fileName);
+//
+//	    Workbook wb = WorkbookFactory.create(fis);
+//
+//	    String data = "";
+//
+//	    if (wb.getSheet(sheetName).getRow(row).getCell(column) != null) {
+//	        data = wb.getSheet(sheetName).getRow(row).getCell(column).toString();
+//	    }
+//
+//	    wb.close();
+//	    fis.close();
+//
+//	    return data;
+//	}
+//}
+
+
+
 package genericutility;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Cell;
 
 public class ExcelUtility {
-	public String getDataFromExcel(String fileName, String sheetName, int row, int column) throws IOException {
 
-	    FileInputStream fis = new FileInputStream("./src/test/resources/" + fileName);
+    public String getDataFromExcel(
+            String fileName,
+            String sheetName,
+            int row,
+            int column) throws IOException {
 
-	    Workbook wb = WorkbookFactory.create(fis);
+        String path = "./src/test/resources/" + fileName;
 
-	    String data = "";
+        try (FileInputStream fis = new FileInputStream(path);
+             Workbook wb = WorkbookFactory.create(fis)) {
 
-	    if (wb.getSheet(sheetName).getRow(row).getCell(column) != null) {
-	        data = wb.getSheet(sheetName).getRow(row).getCell(column).toString();
-	    }
+            Sheet sheet = wb.getSheet(sheetName);
 
-	    wb.close();
-	    fis.close();
+            if (sheet == null) {
+                throw new IllegalArgumentException(
+                    "Sheet not found: " + sheetName
+                );
+            }
 
-	    return data;
-	}
+            Row excelRow = sheet.getRow(row);
+
+            if (excelRow == null) {
+                return "";
+            }
+
+            Cell cell = excelRow.getCell(column);
+
+            if (cell == null) {
+                return "";
+            }
+
+            DataFormatter formatter = new DataFormatter();
+            FormulaEvaluator evaluator =
+                    wb.getCreationHelper().createFormulaEvaluator();
+
+            return formatter.formatCellValue(
+                    cell, evaluator
+            ).trim();
+        }
+    }
 }
+
 

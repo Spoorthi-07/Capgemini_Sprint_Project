@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import genericutility.BaseClass;
 import genericutility.ExcelUtility;
-import junit.framework.Assert;
+import org.testng.Assert;
 import objrepo.InventoryPage;
 import objrepo.ProductItemPage;
 
@@ -30,18 +30,30 @@ public class Inventory extends BaseClass {
         Thread.sleep(1000);
     }
     
-    @Test(groups = {"Functional","Positive"})
-    public void verifyProductNamesAfterSorting() throws InterruptedException {
 
-        InventoryPage inventoryPage = new InventoryPage(driver);
+	@Test(groups = {"Functional", "Positive"})
+	public void verifyProductNamesAfterSorting() {
+	
+	    InventoryPage inventoryPage = new InventoryPage(driver);
+	
+	    inventoryPage.selectFilter("Price (low to high)");
+	
+	    List<Double> prices =
+	            inventoryPage.getProductPricesAsNumbers();
+	
+	    Assert.assertFalse(
+	        prices.isEmpty(),
+	        "No product prices were displayed"
+	    );
+	
+	    for (int i = 1; i < prices.size(); i++) {
+	        Assert.assertTrue(
+	            prices.get(i - 1) <= prices.get(i),
+	            "Products are not sorted from low to high: " + prices
+	        );
+	    }
+	}
 
-        inventoryPage.selectFilter("Price (low to high)");
-
-        List<String> products = inventoryPage.getProductNames();
-        Thread.sleep(1000);
-
-        Assert.assertFalse(products.isEmpty());
-    }
     
     @Test(groups = {"Integration","Positive"})
     public void productcartpage() throws IOException, InterruptedException {

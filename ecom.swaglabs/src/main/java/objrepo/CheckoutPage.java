@@ -89,7 +89,15 @@ public class CheckoutPage {
     @FindBy(css = ".error-message-container")
     private WebElement errorMessage;
 
-    public String getErrorMessage() {
-        return errorMessage.getText();
-    }
+
+	public String getErrorMessage() {
+	
+	    WebDriverWait wait =
+	            new WebDriverWait(driver, Duration.ofSeconds(10));
+	
+	    return wait.until(
+	        ExpectedConditions.visibilityOf(errorMessage)
+	    ).getText();
+}
+
 }

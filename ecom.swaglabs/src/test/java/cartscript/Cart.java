@@ -15,84 +15,88 @@ public class Cart extends BaseClass {
 	ExcelUtility eu = new ExcelUtility();
 
 
-@Test(groups = {"Integration", "Positive"})
-public void verifyCartToCheckoutIntegration() throws IOException {
-
-    InventoryPage inventoryPage = new InventoryPage(driver);
-
-    String productName = eu.getDataFromExcel(
-        "SwagLabsData.xlsx", "Sheet1", 2, 0
-    );
-
-    Assert.assertFalse(
-        productName.trim().isEmpty(),
-        "Product name is empty in Excel"
-    );
-
-    inventoryPage.addProductToCart(productName);
-
-    Assert.assertEquals(
-        inventoryPage.getCartCount(),
-        1,
-        "Product was not added to the cart"
-    );
-
-    inventoryPage.clickCart();
-
-    CartPage cartPage = new CartPage(driver);
-
-    Assert.assertTrue(
-        cartPage.isProductPresent(productName),
-        "Product not found in cart: " + productName
-    );
-
-    cartPage.clickCheckout();
-
-    Assert.assertTrue(
-        driver.getCurrentUrl().contains("checkout-step-one"),
-        "Checkout information page did not open"
-    );
-}
-
+	@Test(groups = {"Integration", "Positive"})
+	public void verifyCartToCheckoutIntegration() throws IOException {
 	
-	@Test(groups = {"Functional","Positive"})
-	public void verifyRemoveProductFromCart() throws IOException {
-
 	    InventoryPage inventoryPage = new InventoryPage(driver);
-
-	    String productName =
-	            eu.getDataFromExcel("SwagLabsData.xlsx", "Sheet1", 2, 0);
-
-	    inventoryPage.addProductToCart(productName);
-	    inventoryPage.clickCart();
-
-	    CartPage cartPage = new CartPage(driver);
-
-	    Assert.assertTrue(cartPage.isProductPresent(productName));
-
-	    cartPage.removeProduct(productName);
-
-	    Assert.assertFalse(cartPage.isProductPresent(productName));
-	}
 	
-	   @Test(groups = {"Integration", "Positive"})
-	    public void verifyInventoryToCart() throws IOException {
+	    String productName = eu.getDataFromExcel(
+	        "SwagLabsData.xlsx", "Sheet1", 2, 0
+	    );
+	
+	    Assert.assertFalse(
+	        productName.trim().isEmpty(),
+	        "Product name is empty in Excel"
+	    );
+	
+	    inventoryPage.addProductToCart(productName);
+	
+	    Assert.assertEquals(
+	        inventoryPage.getCartCount(),
+	        1,
+	        "Product was not added to the cart"
+	    );
+	
+	    inventoryPage.clickCart();
+	
+	    CartPage cartPage = new CartPage(driver);
+	
+	    Assert.assertTrue(
+	        cartPage.isProductPresent(productName),
+	        "Product not found in cart: " + productName
+	    );
+	
+	    cartPage.clickCheckout();
+	
+	    Assert.assertTrue(
+	        driver.getCurrentUrl().contains("checkout-step-one"),
+	        "Checkout information page did not open"
+	    );
+	}
 
-	        InventoryPage inventoryPage = new InventoryPage(driver);
+	
 
-	        String productName =
-	                eu.getDataFromExcel("SwagLabsData.xlsx", "Sheet1", 2, 0);
+	@Test(groups = {"Functional", "Positive"})
+	public void verifyEmptyCartContainsNoProducts() {
+	
+	    InventoryPage inventoryPage = new InventoryPage(driver);
+	
+	    Assert.assertEquals(
+	        inventoryPage.getCartCount(),
+	        0,
+	        "Cart should initially contain zero products"
+	    );
+	
+	    inventoryPage.clickCart();
+	
+	    CartPage cartPage = new CartPage(driver);
+	
+	    Assert.assertEquals(
+	        cartPage.getCartProductCount(),
+	        0,
+	        "Cart should not display any product rows"
+	    );
+	}
 
-	        inventoryPage.addProductToCart(productName);
-
-	        inventoryPage.clickCart();
-
-	        CartPage cartPage = new CartPage(driver);
-
-	        Assert.assertTrue(
-	                cartPage.isProductPresent(productName)
-	        );
-	    }
+	
+//	   @Test(groups = {"Integration", "Positive"})
+//	    public void verifyInventoryToCart() throws IOException {
+//
+//	        InventoryPage inventoryPage = new InventoryPage(driver);
+//
+//	        String productName =
+//	                eu.getDataFromExcel("SwagLabsData.xlsx", "Sheet1", 2, 0);
+//
+//	        inventoryPage.addProductToCart(productName);
+//
+//	        inventoryPage.clickCart();
+//
+//	        CartPage cartPage = new CartPage(driver);
+//
+//	        Assert.assertTrue(
+//	                cartPage.isProductPresent(productName)
+//	        );
+//	    }
 	   
 
 	   

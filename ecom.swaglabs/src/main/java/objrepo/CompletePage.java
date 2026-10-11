@@ -1,9 +1,13 @@
 package objrepo;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CompletePage {
 
@@ -20,9 +24,17 @@ public class CompletePage {
         PageFactory.initElements(driver, this);
     }
 
-    public String getConfirmationMessage() {
-        return confirmationMessage.getText();
-    }
+
+	public String getConfirmationMessage() {
+	
+	    WebDriverWait wait =
+	            new WebDriverWait(driver, Duration.ofSeconds(10));
+	
+	    return wait.until(
+	        ExpectedConditions.visibilityOf(confirmationMessage)
+	    ).getText();
+	}
+
 
     public WebElement getBackToProductsButton() {
         return backToProductsButton;
